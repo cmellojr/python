@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def myfunc(s):
     new_string = list(s)
     for item in range(len(new_string)):

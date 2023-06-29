@@ -1,3 +1,6 @@
-with open('txt/dracula.txt') as f:
-    for line in f: 
-        print(line, end='')
+#!/usr/bin/python3
+
+with open("txt/dracula.txt") as f:
+    contents = f.readlines()
+    for item in contents:
+        print(item.rstrip())

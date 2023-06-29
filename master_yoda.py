@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 # using the list reverse() method 
 
 def master_yoda(text):

@@ -32,4 +32,33 @@ def count_users(users: Iterable[UserId]) -> int:
     return sum(1 for _ in users)
 
 
+from typing import Callable
+
+Operation = Callable[[int], int]
+
+
+class CommandRegistry:
+    def __init__(self) -> None:
+        self._commands: dict[str, Operation] = {}
+
+    def register(self, name: str, operation: Operation) -> None:
+        if name in self._commands:
+            raise ValueError(f"Command '{name}' already registered")
+        self._commands[name] = operation
+
+    def execute(self, name: str, value: int) -> int:
+        try:
+            return self._commands[name](value)
+        except KeyError:
+            raise ValueError(f"Unknown command: {name}") from None
+
+
+registry = CommandRegistry()
+
+registry.register("double", lambda x: x * 2)
+registry.register("square", lambda x: x ** 2)
+
+print(registry.execute("double", 10))
+
+
 
